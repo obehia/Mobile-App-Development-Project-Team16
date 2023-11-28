@@ -6,12 +6,12 @@ public class navigation_patrol : MonoBehaviour
     public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
-    private Animator animator; // Reference to the Animator component
+    private Animator animator; 
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>(); // Get the Animator component
+        animator = GetComponent<Animator>(); 
 
         agent.autoBraking = false;
         GotoNextPoint();
@@ -33,15 +33,13 @@ public class navigation_patrol : MonoBehaviour
         destPoint = newDestPoint;
 
         // Trigger walking animation
-        animator.Play("Walk"); // Replace "Walk" with your actual animation name in the Animator Controller
+        animator.Play("Walk"); 
     }
 
     void Update()
     {
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            // Stop walking animation when the agent reaches the destination point
-            animator.Play("Idle"); // Replace "Idle" with your idle or standing animation
             GotoNextPoint();
         }
     }
